@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">LengthPicker</string>
+    <string name="sub">-</string>
+    <string name="add">+</string>
 </resources>
