@@ -61,7 +61,7 @@ public class LengthPicker extends RelativeLayout{
         mPLusButton.setOnClickListener(listener);
         mMinusButton.setOnClickListener(listener);
         //set bg color
-        setBackgroundColor(Color.CYAN);
+//        setBackgroundColor(Color.CYAN);
     }
 
     //method that converts the number of inches to feet and vice versa
