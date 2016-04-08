@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--<merge> takes all the views and attach them directly to where this xml is
+    inflated in-->
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,7 +12,9 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="#fff"
-    tools:context="design.example.ngondo.lengthpicker.MainActivity">
+    tools:context="design.example.ngondo.lengthpicker.MainActivity"
+    >
+    <!--All the attributes spaced out above are not read due to the merge tag used-->
 
 
     <Button
@@ -39,4 +45,4 @@
         android:textColor="#000"
         android:layout_alignBottom="@+id/add"
         android:layout_centerHorizontal="true" />
-</RelativeLayout>
+</merge>
