@@ -14,7 +14,10 @@
     android:background="#fff"
     tools:context="design.example.ngondo.lengthpicker.MainActivity"
     >
-    <!--All the attributes spaced out above are not read due to the merge tag used-->
+    <!--All the attributes spaced out above are not read due to the <merge> tag used.
+        It trims one view from the heirarchy hence faster loading time.
+        If you really need them you can still add them in the LengthPicker java file
+        or use the xml attributes in customized tag in activity_main.xml-->
 
 
     <Button
