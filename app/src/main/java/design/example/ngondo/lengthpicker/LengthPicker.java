@@ -17,6 +17,10 @@ public class LengthPicker extends RelativeLayout{
     private TextView mTextView;
 
     private int mNumInches;
+
+
+    private OnChangeListener mListener = null;
+
     //used in java
     public LengthPicker(Context context) {
         super(context);
@@ -49,11 +53,17 @@ public class LengthPicker extends RelativeLayout{
                 switch (view.getId()){
                     case R.id.add:
                         mNumInches++;
+                        if(mListener != null){
+                            mListener.onChange(mNumInches);
+                        }
                         updateControls();
                         break;
                     case R.id.subtract:
                         if(mNumInches > 0){
                             mNumInches--;
+                            if(mListener != null){
+                                mListener.onChange(mNumInches);
+                            }
                             updateControls();
                         }
                         break;
@@ -113,4 +123,20 @@ public class LengthPicker extends RelativeLayout{
         //The number cannot go below zero
         mMinusButton.setEnabled(mNumInches > 0);
     }
+
+    /*
+    * Listener Interface here so that we can perform an action whenever anything on
+    * the LP is clicked
+    * */
+    public void setOnChangeListener(OnChangeListener listener){
+        mListener = listener;
+    }
+
+    public interface OnChangeListener{
+        public void onChange(int length);
+    }
+    public int getmNumInches() {
+        return mNumInches;
+    }
+
 }
