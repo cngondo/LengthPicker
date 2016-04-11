@@ -2,4 +2,7 @@
     <string name="app_name">LengthPicker</string>
     <string name="sub">-</string>
     <string name="add">+</string>
+    <string name="w">width</string>
+    <string name="h">height</string>
+    <string name="a">area</string>
 </resources>
