@@ -1,6 +1,8 @@
 package design.example.ngondo.lengthpicker;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +10,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class LengthPicker extends RelativeLayout{
+    private static final String KEY_SUPER_STATE ="superState" ;
+    private static final String KEY_NUM_INCHES ="superState" ;
+
     private View mPLusButton, mMinusButton;
     private TextView mTextView;
 
@@ -21,7 +26,6 @@ public class LengthPicker extends RelativeLayout{
     public LengthPicker(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
-
     }
 
     private void init() {
@@ -60,7 +64,35 @@ public class LengthPicker extends RelativeLayout{
         mPLusButton.setOnClickListener(listener);
         mMinusButton.setOnClickListener(listener);
         //set bg color
-//        setBackgroundColor(Color.CYAN);
+//      setBackgroundColor(Color.CYAN);
+    }
+    /*
+    * Save the state when device orientation changes
+    * */
+    @Override
+    protected Parcelable onSaveInstanceState() {
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(KEY_SUPER_STATE, super.onSaveInstanceState());
+        bundle.putInt(KEY_NUM_INCHES, mNumInches);
+        return bundle;
+    }
+
+    /*
+    * Restore the state when the device changes
+    * */
+    @Override
+    protected void onRestoreInstanceState(Parcelable state) {
+        if(state instanceof Bundle){
+            Bundle bundle = (Bundle) state;
+            mNumInches = bundle.getInt(KEY_NUM_INCHES);
+            super.onRestoreInstanceState(bundle.getParcelable(KEY_SUPER_STATE));
+        }else{
+            super.onRestoreInstanceState(state);
+        }
+        /*
+        * We need to call update controls so that the number of the views can be seen
+        * */
+        updateControls();
     }
 
     //method that converts the number of inches to feet and vice versa
